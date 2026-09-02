@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vera — Real-time AI Companion</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#090b12;color:#fff;min-height:100vh}.wrap{max-width:1000px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.logo{font-weight:800;letter-spacing:.12em}.online{font-size:12px;color:#9ff0c1}.card{background:#111522;border:1px solid #252b3b;border-radius:24px;overflow:hidden;box-shadow:0 18px 50px #0008}.hero{padding:20px}.hero h1{margin:0 0 6px}.hero p{margin:0;color:#aab1c3;font-size:14px}.preview{padding:16px;background:#0b0e16}.preview img{display:block;width:100%;max-height:620px;object-fit:contain;border-radius:18px;background:#05070b}.note{padding:16px 20px;color:#aab1c3;font-size:13px;line-height:1.5}.note b{color:#fff}.did-area{padding:16px;min-height:120px}.help{padding:16px 20px;border-top:1px solid #252b3b;color:#aab1c3;font-size:13px}.help code{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="logo">VERA ♥</div><div class="online">● REAL-TIME MODE</div></div>
+  <div class="card">
+    <div class="hero"><h1>Vera — AI companion</h1><p>Start a real-time voice and video conversation with Vera.</p></div>
+    <div class="preview"><img src="avatar-reference.png" alt="Vera avatar reference"></div>
+    <div class="note"><b>Ready.</b> Tap the D-ID agent button to start the real-time conversation. Allow microphone access when your browser asks.</div>
+    <div class="did-area"></div>
+    <div class="help">If the agent does not appear, make sure this exact GitHub Pages domain is allowed in D-ID Embed settings and reload the page.</div>
+  </div>
+</div>
+
+<!-- D-ID real-time Agent embed -->
+<script type="module"
+  src="https://agent.d-id.com/v2/index.js"
+  data-mode="fabio"
+  data-client-key="ck_WzYfZ8uI14-MACAovBEIk"
+  data-agent-id="v2_agt_Suh6n10g"
+  data-name="did-agent"
+  data-monitor="true"
+  data-orientation="horizontal"
+  data-position="right"
+  data-open-mode="expanded">
+</script>
+</body>
+</html>
