@@ -1,4 +1,0 @@
-window.VERA_CONFIG = {
-  agentId: 'v2_agt_YR4i2Tt-',
-  clientKey: 'YOUR_CLIENT_KEY'
-};
