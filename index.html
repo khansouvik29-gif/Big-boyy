@@ -2,53 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vera — Real-time AI Companion</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#090b12;color:#fff;min-height:100vh}
-.wrap{max-width:1000px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.logo{font-weight:800;letter-spacing:.12em}.online{font-size:12px;color:#9ff0c1}.card{background:#111522;border:1px solid #252b3b;border-radius:24px;overflow:hidden;box-shadow:0 18px 50px #0008}.hero{padding:18px 20px}.hero h1{margin:0 0 6px;font-size:24px}.hero p{margin:0;color:#aab1c3;font-size:14px}.avatar{min-height:520px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#2a3044,#0c0f17 62%);padding:16px}.avatar-inner{width:min(760px,100%);min-height:480px;border-radius:20px;overflow:hidden;background:#05070b;display:flex;align-items:center;justify-content:center}.avatar-inner img{max-width:100%;max-height:100%;object-fit:contain;opacity:.98}.actions{padding:18px;display:flex;gap:10px;flex-wrap:wrap}.notice{padding:0 18px 18px;color:#9ea7ba;font-size:13px;line-height:1.5}.notice b{color:#fff}.setup{padding:18px;border-top:1px solid #252b3b}.setup code{background:#080a10;padding:2px 6px;border-radius:6px}.small{font-size:12px;color:#9ea7ba}.btn{border:0;border-radius:12px;padding:11px 15px;font-weight:700;cursor:pointer;background:#fff;color:#111}.btn.secondary{background:#242a39;color:#fff}.status{margin-top:10px;font-size:13px;color:#b9c1d3}
-#did-agent{width:100%;min-height:520px;display:none}
-body.ready #did-agent{display:block}body.ready .avatar-reference{display:none}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#090b12;color:#fff;min-height:100vh}.wrap{max-width:1000px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.logo{font-weight:800;letter-spacing:.12em}.online{font-size:12px;color:#9ff0c1}.card{background:#111522;border:1px solid #252b3b;border-radius:24px;overflow:hidden;box-shadow:0 18px 50px #0008}.hero{padding:20px}.hero h1{margin:0 0 6px}.hero p{margin:0;color:#aab1c3;font-size:14px}.preview{padding:16px;background:#0b0e16}.preview img{display:block;width:100%;max-height:620px;object-fit:contain;border-radius:18px;background:#05070b}.note{padding:16px 20px;color:#aab1c3;font-size:13px;line-height:1.5}.note b{color:#fff}.did-area{padding:16px;min-height:120px}.help{padding:16px 20px;border-top:1px solid #252b3b;color:#aab1c3;font-size:13px}.help code{color:#fff}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top"><div class="logo">VERA ♥</div><div class="online">● REAL-TIME MODE</div></div>
   <div class="card">
-    <div class="hero"><h1>Vera — AI companion</h1><p>Real-time avatar, voice conversation and live video stream.</p></div>
-    <div class="avatar">
-      <div class="avatar-inner avatar-reference"><img src="avatar-reference.png" alt="Avatar reference image"></div>
-      <div id="did-agent"></div>
-    </div>
-    <div class="actions">
-      <button class="btn" id="start">Start real-time Vera</button>
-      <button class="btn secondary" id="help">Setup help</button>
-    </div>
-    <div class="notice" id="status"><b>Not connected.</b> Add your D-ID Agent ID and restricted Client Key in <code>config.js</code>, then reload.</div>
-    <div class="setup" id="setup" hidden>
-      <div><b>Setup checklist</b></div>
-      <ol class="small">
-        <li>In D-ID Studio, create an Agent using the adult photo you have permission to use.</li>
-        <li>Set the personality/voice you want.</li>
-        <li>Open the Agent's <b>Embed</b> option and allow your GitHub Pages domain.</li>
-        <li>Copy the Agent ID and Client Key into <code>config.js</code>.</li>
-        <li>Publish this folder to GitHub Pages.</li>
-      </ol>
-      <div class="small">Never put your private D-ID API key in this website. The frontend should use a restricted client key only.</div>
-    </div>
+    <div class="hero"><h1>Vera — AI companion</h1><p>Start a real-time voice and video conversation with Vera.</p></div>
+    <div class="preview"><img src="avatar-reference.png" alt="Vera avatar reference"></div>
+    <div class="note"><b>Ready.</b> Tap the D-ID agent button to start the real-time conversation. Allow microphone access when your browser asks.</div>
+    <div class="did-area"></div>
+    <div class="help">If the agent does not appear, make sure this exact GitHub Pages domain is allowed in D-ID Embed settings and reload the page.</div>
   </div>
 </div>
-<script src="config.js"></script>
-<script>
-const s=document.getElementById('status'), setup=document.getElementById('setup');
-document.getElementById('help').onclick=()=>setup.hidden=!setup.hidden;
-document.getElementById('start').onclick=()=>{
-  if(!window.VERA_CONFIG?.agentId || !window.VERA_CONFIG?.clientKey){setup.hidden=false;s.innerHTML='<b>Setup needed.</b> Open Setup help and add the D-ID Agent ID + restricted Client Key.';return;}
-  const script=document.createElement('script');
-  script.type='module'; script.src='https://agent.d-id.com/v2/index.js';
-  script.dataset.mode='fabio'; script.dataset.clientKey=window.VERA_CONFIG.clientKey; script.dataset.agentId=window.VERA_CONFIG.agentId; script.dataset.name='did-agent';
-  document.body.classList.add('ready'); document.head.appendChild(script); s.innerHTML='<b>Connecting…</b> If prompted, allow microphone access.';
-};
+
+<!-- D-ID real-time Agent embed -->
+<script type="module"
+  src="https://agent.d-id.com/v2/index.js"
+  data-mode="fabio"
+  data-client-key="ck_KDrt0xLQUaDqADQ58We9K"
+  data-agent-id="v2_agt_YR4i2Tt-"
+  data-name="did-agent"
+  data-monitor="true"
+  data-orientation="horizontal"
+  data-position="right"
+  data-open-mode="expanded">
 </script>
 </body>
 </html>
